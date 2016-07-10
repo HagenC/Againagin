@@ -1,81 +1,39 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Describing:&quot;When Can I (legally) Drive&quot; Shiny_app.</title>
-  <meta charset="utf-8">
-  <meta name="description" content="Describing:&quot;When Can I (legally) Drive&quot; Shiny_app.">
-  <meta name="author" content="HagenC">
-  <meta name="generator" content="slidify" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
-  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
-    media="only screen and (max-device-width: 480px)" >
-  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
-  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
-  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/nvd3/css/nv.d3.css"></link>
-<link rel=stylesheet href="libraries/widgets/nvd3/css/rNVD3.css"></link>
-<link rel=stylesheet href="./assets/css/ribbons.css"></link>
-
-  
-  <!-- Grab CDN jQuery, fall back to local if offline -->
-  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
-  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
-  <script data-main="libraries/frameworks/io2012/js/slides" 
-    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
-  </script>
-  
-  <script src="libraries/widgets/nvd3/js/jquery-1.8.2.min.js"></script>
-<script src="libraries/widgets/nvd3/js/d3.v3.min.js"></script>
-<script src="libraries/widgets/nvd3/js/nv.d3.min-new.js"></script>
-<script src="libraries/widgets/nvd3/js/fisheye.js"></script>
+---
+title       : Describing:"When Can I (legally) Drive" Shiny_app.
+subtitle    : Developing Data Products, Assignment week 4.
+author      : HagenC
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+ext_widgets: {rCharts: [libraries/nvd3]}
+---
 
 
-</head>
-<body style="opacity: 0">
-  <slides class="layout-widescreen">
-    
-    <!-- LOGO SLIDE -->
-        <slide class="title-slide segue nobackground">
-  <hgroup class="auto-fadein">
-    <h1>Describing:&quot;When Can I (legally) Drive&quot; Shiny_app.</h1>
-    <h2>Developing Data Products, Assignment week 4.</h2>
-    <p>HagenC<br/></p>
-  </hgroup>
-  <article></article>  
-</slide>
-    
+## Motivation
 
-    <!-- SLIDES -->
-    <slide class="" id="slide-1" style="background:;">
-  <hgroup>
-    <h2>Motivation</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><strong>&quot;When can I (legally)drive?&quot;</strong> is an Shiny-app that calculates the blood alcohol level (permille),
-the units consumed and the time in hours before you can legally drive.</p>
+**"When can I (legally)drive?"** is an Shiny-app that calculates the blood alcohol level (permille),
+the units consumed and the time in hours before you can legally drive.
 
-<p>The app can give you an idea what a couple of beers or a glass of wine will do to you!</p>
+The app can give you an idea what a couple of beers or a glass of wine will do to you!
 
-<p>The calculations are described in the following slides.</p>
+The calculations are described in the following slides.
 
-  </article>
-  <!-- Presenter Notes -->
-</slide>
 
-<slide class="" id="slide-2" style="background:;">
-  <hgroup>
-    <h2>Blood alcohol level (concentration)</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>The alchohol blood level is calculated as: grams of alcohol / (body weight in Kg * body water fraction).
-The body water fraction is 70% for males and 60% for females. </p>
+---  
 
-<p>If we consider a person drinking 3 beers of 4.6 % alchohol the blood alcohol dependency on body weight and sex can be illustrated as below: </p>
+## Blood alcohol level (concentration)
+
+The alchohol blood level is calculated as: grams of alcohol / (body weight in Kg * body water fraction).
+The body water fraction is 70% for males and 60% for females. 
+
+If we consider a person drinking 3 beers of 4.6 % alchohol the blood alcohol dependency on body weight and sex can be illustrated as below: 
+
 
 <div id = 'chart1' class = 'rChart nvd3'></div>
-
 <script type='text/javascript'>
  $(document).ready(function(){
       drawchart1()
@@ -857,86 +815,30 @@ The body water fraction is 70% for males and 60% for females. </p>
     };
 </script>
 
-  </article>
-  <!-- Presenter Notes -->
-</slide>
+--- .classe 
 
-<slide class="classe" id="slide-3" style="background:;">
-  <hgroup>
-    <h2>Time before reaching the legal blood alchohol level.</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>The legal blood alcohol level is dependent on country/state law. In Denmark it is 0.5 permille and in Sweden 0.0.</p>
+## Time before reaching the legal blood alchohol level.
 
-<p>To calulate the time before reaching legal blood alcohol level I use the the widely accepted alchohol metabolizing constant of 0.15 grams/hour. </p>
+The legal blood alcohol level is dependent on country/state law. In Denmark it is 0.5 permille and in Sweden 0.0.
 
-<p>Calculating the grams of alcohol in your body and substratc the legal amount of alcohol in grams (that is dependent on body weight and sex) we can calculate the time before the surplus alcohold is metabolized. </p>
+To calulate the time before reaching legal blood alcohol level I use the the widely accepted alchohol metabolizing constant of 0.15 grams/hour. 
 
-<p>A unit of alcohol is 12g so it will take 12/0.15 = 80 hours to metabolize one unit, no matter your body weight or sex. However, it is actually influenced by whether you have a full stomach or not. If you have eaten, the alcohol metabolism is FASTER. The reverse is true for the alcohol absorbtion that is SLOWER on a full stomach. Absorption is also influenced on sex and body weight. </p>
+Calculating the grams of alcohol in your body and substratc the legal amount of alcohol in grams (that is dependent on body weight and sex) we can calculate the time before the surplus alcohold is metabolized. 
 
-<p>Unfortunately, there are no measures of these phenomenons as we are not sure why it is so. Thus, it is ignored in the calculations. </p>
+A unit of alcohol is 12g so it will take 12/0.15 = 80 hours to metabolize one unit, no matter your body weight or sex. However, it is actually influenced by whether you have a full stomach or not. If you have eaten, the alcohol metabolism is FASTER. The reverse is true for the alcohol absorbtion that is SLOWER on a full stomach. Absorption is also influenced on sex and body weight. 
 
-  </article>
-  <!-- Presenter Notes -->
-</slide>
+Unfortunately, there are no measures of these phenomenons as we are not sure why it is so. Thus, it is ignored in the calculations. 
 
-<slide class="classe" id="slide-4" style="background:;">
-  <hgroup>
-    <h2>An App without an Disclaimer?: I dont think so:</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>So...</p>
 
-<p>Disclaimer:  This is only a rough estimate based on population averages and does not take into account existing disease states, drug interactions, or age.</p>
 
-  </article>
-  <!-- Presenter Notes -->
-</slide>
+--- .classe 
 
-    <slide class="backdrop"></slide>
-  </slides>
-  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
-    <ul>
-      <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Motivation'>
-         1
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Blood alcohol level (concentration)'>
-         2
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Time before reaching the legal blood alchohol level.'>
-         3
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='An App without an Disclaimer?: I dont think so:'>
-         4
-      </a>
-    </li>
-  </ul>
-  </div>  <!--[if IE]>
-    <script 
-      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
-    </script>
-    <script>CFInstall.check({mode: 'overlay'});</script>
-  <![endif]-->
-</body>
-  <!-- Load Javascripts for Widgets -->
-  
-  <!-- LOAD HIGHLIGHTER JS FILES -->
-  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
-   
-  </html>
-=======
+## An App without an Disclaimer?: I dont think so:
 
->>>>>>> 806ec418372c170c27f165e6f48b75c43e23e79c
+So...
+
+Disclaimer:  This is only a rough estimate based on population averages and does not take into account existing disease states, drug interactions, or age.
+
+
+
+
